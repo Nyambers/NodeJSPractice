@@ -2,25 +2,25 @@ const events = require('events')
 
 const fs = require('fs');
 
-const eventEmitter = new events.EventEmitter()
+const eventEmitter = new events.EventEmitter();
 
 const eventOpenFileHandler = () => {
     console.log('Event!')
     eventEmitter.emit('event_open_file')
-}
+};
 
 eventEmitter.on('event_open_file', () => {
     console.log('Opened file successfully.')
-})
+});
 
 const eventCreateFileHandler = () => {
     console.log('Event!')
     eventEmitter.emit('event_create_file')
-}
+};
 
 eventEmitter.on('event_create_file', () => {
     console.log('Created file successfully.')
-})
+});
 
 const text = "strings";
 
