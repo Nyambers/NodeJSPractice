@@ -15,7 +15,7 @@ router.get('/hello', (ctx) => {
     ctx.body = data
 })
 
-router.all('/*', function(ctx, next) {
+router.all('/(.*)', (ctx, next) => {
     console.log('Accessing something special...')
     next()
 })
