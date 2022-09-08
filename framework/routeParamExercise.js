@@ -22,14 +22,14 @@ router.get('/company/:id([1-9][0-9]{4})', (ctx) => {
 //     ctx.body = data
 // })
 
-app.use(function (ctx,next){
+app
+.use(function (ctx,next){
     this.body = `Invalid URL!!! ${ctx.request.method} ${ctx.request.url}`
     ctx.response.type = 'text/html'
     ctx.response.body = this.body
     ctx.status = 404
     next()
 })
-
 .use(router.routes())
 .use(router.allowedMethods())
 
