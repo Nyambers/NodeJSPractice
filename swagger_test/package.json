@@ -1,0 +1,21 @@
+{
+  "name": "swagger_test",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-body": "^5.0.0",
+    "koa2-swagger-ui": "^5.1.0",
+    "swagger2": "^3.0.0",
+    "swagger2-koa": "^3.0.0",
+    "yamljs": "^0.3.0"
+  }
+}
