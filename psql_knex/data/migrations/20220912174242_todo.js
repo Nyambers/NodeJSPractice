@@ -4,8 +4,9 @@
  */
  exports.up = knex =>
  knex.schema.createTable("users", tbl => {
-   tbl.increments('id');
-   tbl.text("name", 128).notNullable();
+   tbl.increments('id')
+   tbl.text("name", 128).notNullable()
+   tbl.jsonb("info")
  })
 
 /**

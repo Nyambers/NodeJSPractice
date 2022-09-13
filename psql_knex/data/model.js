@@ -13,7 +13,7 @@ async function insert(name) {
 
 async function retrieveAll() {
     return Knex('users')
-        .select('id', 'name')
+        .select('*')
         .from('users')
         .then((users) => {
             return users
@@ -26,7 +26,7 @@ async function retrieveAll() {
 
 async function retrieve(id) {
     return Knex('users')
-        .select('id', 'name')
+        .select('*')
         .from('users')
         .where({id: id})
         .then((users) => {
@@ -38,11 +38,12 @@ async function retrieve(id) {
         })
 }
 
-async function update(id, name) {
+async function update(id, name, info) {
     return Knex('users')
         .where({id: id})
         .update({
-            name: name
+            name: name,
+            info: info
         })
 }
 

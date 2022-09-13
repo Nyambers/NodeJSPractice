@@ -50,8 +50,8 @@ router
         const data = ctx.request.body
         console.log(`PUT request`)
         console.log(`Param: ${JSON.stringify(ctx.params)}`)
-        console.log(`Body: ${JSON.stringify(ctx.body)}`)
-        const new_data = await model.update(ctx.params.id, data.name)
+        console.log(`Body: ${JSON.stringify(ctx.request.body)}`)
+        const new_data = await model.update(ctx.params.id, data.name, data.info)
 
         ctx.status = 204
     })
