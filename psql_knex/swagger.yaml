@@ -1,0 +1,158 @@
+# swagger.yaml
+
+swagger: '2.0'
+info:
+    version: 1.0.0
+    title: Knex Test
+    license:
+      name: Proprietary
+basePath: /v1
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - http
+  - https
+
+paths:
+  '/swagger.json':
+    get:
+      tags:
+        - Spec
+      operationId: retrieveSpec
+      description: Retrieve OpenAPI spec
+      responses:
+        '200':
+          description: Successful
+          schema:
+            type: object
+
+  '/users':
+    post:
+      description: Registers a new user
+      operationId: adminRegisterUser
+      tags:
+        - User
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserBase'
+      responses:
+        '200':
+          description: User is Registered
+          schema:
+            type: object
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+        default:
+          description: Unexpected Error
+          schema:
+            type: object
+            
+    get:
+      description: Get User List
+      operationId: getUserList
+      tags:
+        - User
+      responses:
+        '200':
+          description: Listed All Users
+          schema:
+            type: array
+            items:
+              type: object
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+        default:
+          description: Unexpected Error
+          schema:
+            type: object
+
+  '/users/{id}':
+    get:
+      description: Get User
+      operationId: getUser
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: User is deleted
+          schema:
+            type: object
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+        default:
+          description: Unexpected Error
+          schema:
+            type: object
+
+    put:
+      description: Update User Info
+      operationId: updateUserInfo
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserBase'
+      responses:
+        '204':
+          description: User Info Updated
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+        default:
+          description: Unexpected Error
+          schema:
+            type: object
+
+    delete:
+      description: Delete User
+      operationId: deleteUser
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: User Profile Deleted
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+        default:
+          description: Unexpected Error
+          schema:
+            type: object
+
+definitions:
+  UserBase:
+    required: 
+      - name
+    properties:
+      name:
+        type: string
