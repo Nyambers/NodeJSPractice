@@ -9,6 +9,16 @@
             "database": "knex_practice",
             "username": "postgres",
             "password": "1234"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5431,
+            "driver": "PostgreSQL",
+            "name": "knex-test-docker",
+            "database": "knex_test_local",
+            "username": "postgres",
+            "password": "1234"
         }
     ]
 }
