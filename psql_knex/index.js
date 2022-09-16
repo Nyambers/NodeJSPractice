@@ -43,7 +43,7 @@ router
         const data = await model.retrieve(ctx.params.id)
 
         ctx.status = 200
-        ctx.body = data[0]
+        ctx.body = data
     })
 
     .put('/users/:id', async (ctx) => {

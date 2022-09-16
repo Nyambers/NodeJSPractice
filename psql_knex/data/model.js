@@ -6,6 +6,7 @@ const configOptions = knexfile[env]
 const Knex = require('knex')(configOptions)
 
 const fs = require('fs')
+const { use } = require('chai')
 
 const pubKey = fs.readFileSync('./keys/public.key').toString()
 const secretKey = fs.readFileSync('./keys/secret.key').toString()
@@ -44,7 +45,8 @@ async function retrieve(id) {
         .from('users')
         .where({id: id})
         .then((users) => {
-            return users
+            console.log(users[0])
+            return users[0]
         })
         .catch((err) => {
             console.error(err);
