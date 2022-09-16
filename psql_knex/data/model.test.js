@@ -1,29 +1,41 @@
-var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
-var chaiSubset = require('chai-subset');
+var chai = require("chai")
+var chaiAsPromised = require("chai-as-promised")
+var chaiSubset = require('chai-subset')
+var chaiHttp = require('chai-http')
+var server = require('../index')
 
-chai.use(chaiSubset);
-chai.use(chaiAsPromised);
+chai.use(chaiSubset)
+chai.use(chaiHttp)
+chai.use(chaiAsPromised)
 
-
-var expect = chai.expect;
+var should = chai.should()
+var expect = chai.expect
 
 var model = require("./model")
 
-describe('Test UserDB get user', () => {
-    before('insert one user in db', () => {
-        model.insert('Gawr')
+describe('GET /v1/users', () => {
+    it('should return 500 if id does not exist', (done) => {
+        chai.request('http://localhost:8080')
+        .get('/users/1000/')
+        .end((err, res) => {
+            res.should.have.status(500)
+            done()
+        })
     })
-    after('insert one user in db', () => {
-        model.deleteUser('1')
+    it('should return 500 if no id is not int', (done) => {
+        chai.request('http://localhost:8080')
+        .get('/users/10.1/')
+        .end((err, res) => {
+            res.should.have.status(500)
+            done()
+        })
     })
-    it('must not get if id does not exist', () => {
-        expect(model.retrieve('3')).to.eventually.throw(Error)
-    })
-    it('must not get if id is not int', () => {
-        expect(model.retrieve('2.1')).to.eventually.throw(Error)
-    })
-    it('must be able to get id', () => {
-        expect(model.retrieve('1')).to.eventually.containSubset({ id: 1 })
+    it('should return user if id exists', (done) => {
+        chai.request('http://localhost:8080')
+        .get('/users/1/')
+        .end((err, res) => {
+            res.should.have.status(200)
+            done()
+        })
     })
 })

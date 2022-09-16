@@ -72,3 +72,5 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 app.use(ui(spec, '/docs'))
 app.listen(8080, console.log(`Live on 8080`))
+
+module.exports = app
